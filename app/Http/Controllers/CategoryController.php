@@ -20,13 +20,21 @@ class CategoryController extends Controller
         $request->validate([
             'name' => 'required|max:255|string',
             'description' => 'required|max:255|string',
+            'image' => 'nullable|mimes:png,jpeg,gif,jpg,webp',
             'is_active' => 'sometimes',
         ]);
 
-     
+           if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extension;
+            $path = 'uploads/products/';
+            $file->move($path, $filename);
+           }
          Category::create([
            'name' => $request->name,
            'description' => $request->description,
+           'image' => $path.$filename,
            'is_active' => $request->is_active == true ?  1:0,
 
          ]);
