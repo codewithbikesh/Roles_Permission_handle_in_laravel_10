@@ -18,14 +18,14 @@ class ProductController extends Controller
 // we can validate it by using request validation functions 
 // we can validate it by using request validation functions 
 
-        $request->validated();
+    $request->validated();
 
 
 // we can validate it in this way 
 // we can validate it in this way 
 
     //   $validator = Validator::make($request->all(), [
-    //           'name' =>'required|min:3|max:255|string',
+    //         'name' =>'required|min:3|max:255|string',
     //         'description' =>'required|string',
     //         'price' =>'required|numeric',
     //         'stock' => 'required|numeric',

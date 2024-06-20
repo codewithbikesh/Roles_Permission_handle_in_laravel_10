@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Product;
@@ -15,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Categories section route from here 
+// Categories section route from here 
+Route::get('categories',[CategoryController::class,'index']);
+Route::get('categories/create',[CategoryController::class,'create']);
+Route::post('categories/create',[CategoryController::class,'store']);
+Route::get('categories/{id}/edit',[CategoryController::class,'edit']);
+Route::put('categories/{id}/edit',[CategoryController::class,'update']);
+Route::get('categories/{id}/delete',[CategoryController::class,'destroy']);
 
 Route::get('/', function () {
     return view('frontend.index');
@@ -24,6 +33,8 @@ Route::get('products', function () {
     return Product::get();
 });
 
+// Products section route from here 
+// Products section route from here 
 Route::get('products/create',[ProductController::class,'create']);
 Route::post('products/create',[ProductController::class,'store']);
 
