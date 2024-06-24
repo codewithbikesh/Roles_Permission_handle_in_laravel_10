@@ -15,7 +15,7 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('categories/'.$category->id.'/edit') }}" method="POST">
+                    <form action="{{ url('categories/'.$category->id.'/edit') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -28,6 +28,11 @@
                             <label for="">Description</label>
                              <textarea name="description" class="form-control" value="{{ $category->description }}">{{ $category->description }}</textarea>
                              @error('description')<span class="text-danger">{{ $message }}</span>@enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Upload Image</label>
+                            <input type="file" class="form-control" name="image" />
+                             @error('image')<span class="text-danger">{{ $message }}</span>@enderror
                         </div>
                         <div class="mb-3">
                             <label for="">Is_Active</label>

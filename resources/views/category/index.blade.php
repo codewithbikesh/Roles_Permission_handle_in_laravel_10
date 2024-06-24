@@ -18,6 +18,7 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
+                            <th>Image</th>
                             <th>Is_Active</th>
                             <th>Action</th>
                         </tr>
@@ -28,6 +29,7 @@
                             <td>{{ $category->id }}</td>
                             <td>{{ $category->name }}</td>
                             <td>{{ $category->description }}</td>
+                            <td><img src="{{ asset($category->image) }}" style="width: 70px; height: 70px;" alt="" /></td>
                             <td style="color: {{ $category->is_active == 1 ? 'green' : 'red' }};  background-color: {{ $category->is_active == 1 ? 'lightgreen' : 'lightcoral' }};" >{{ $category->is_active == 1 ? 'active' : 'inactive' }}</td>
                             <td>
                                 <a href="{{ url('categories/'.$category->id.'/edit') }}" class="btn btn-success mx-2">Edit</a>
