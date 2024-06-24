@@ -35,8 +35,13 @@ Route::get('products', function () {
 
 // Products section route from here 
 // Products section route from here 
+Route::get('products',[ProductController::class,'index']);
 Route::get('products/create',[ProductController::class,'create']);
 Route::post('products/create',[ProductController::class,'store']);
+Route::get('products/{id}/edit',[ProductController::class,'edit']);
+Route::put('products/{id}/edit',[ProductController::class,'update']);
+Route::get('products/{id}/delete',[ProductController::class,'destroy']);
+
 
 // Route::get('product-create', function () {
 //         return Product::create([
@@ -59,5 +64,4 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
 require __DIR__.'/auth.php';

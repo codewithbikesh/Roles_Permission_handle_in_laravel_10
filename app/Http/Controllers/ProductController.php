@@ -10,8 +10,13 @@ use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
+    // fetch the product from database 
+    public function index(){
+        $products = Product::get();
+        return view("frontend.products.index",compact('products'));
+     }
     public function create(){
-         return view("frontend.product-create");
+         return view("frontend.products.product-create");
     }
 
     public function store(ProductFormRequest $request){
@@ -96,14 +101,14 @@ class ProductController extends Controller
 // you can also store the data in this way 
 // you can also store the data in this way
 
-    //    $product =  new  Product ([
-    //     'name' => $request->name,   
-    //     'description' => $request->description,
-    //     'price' => $request->price,
-    //     'stock' => $request->stock,
-    //     'is_active' => $request->is_active == true ? 1:0,
-    //     ]);  
-    //     $product->save();
+       $product =  new  Product ([
+        'name' => $request->name,   
+        'description' => $request->description,
+        'price' => $request->price,
+        'stock' => $request->stock,
+        'is_active' => $request->is_active == true ? 1:0,
+        ]);  
+        $product->save();
 
 // you can also store the data in this way 
 // you can also store the data in this way
@@ -178,19 +183,48 @@ class ProductController extends Controller
 
 
 
-Product::updateOrCreate(
-    [
-        'name' => $request->name, 
-    ],
-    [
-        'description' => $request->description,
-            'price' => $request->price,
-            'stock' => $request->stock,
-            'is_active' => $request->is_active == true ? 1:0,
-    ]
-);
+// Product::updateOrCreate(
+//     [
+//         'name' => $request->name, 
+//     ],
+//     [
+//         'description' => $request->description,
+//             'price' => $request->price,
+//             'stock' => $request->stock,
+//             'is_active' => $request->is_active == true ? 1:0,
+//     ]
+// );
 
 
         return redirect('/products/create')->with('status','Product Added successfully');
     }
+
+    // get the data from database for the edit 
+    // get the data from database for the edit 
+    public function edit($id){
+        $product = Product::findOrFail($id);
+        return view('frontend.products.edit',compact('product'));
+    }
+
+    // update the data from database 
+    // update the data from database 
+    public function update(ProductFormRequest $request, $id){
+        $request->validated();
+        $product = Product::findOrFail($id);
+        $product->update([
+            'name' => $request->name,   
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'is_active' => $request->is_active == true ? 1:0,
+        ]);
+        return redirect()->back()->with('status','Product Updated successfully');
+    }
+
+    public function destroy($id){
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->back()->with('status','Product Delete successfully');
+    }
+
 }

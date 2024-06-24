@@ -32,6 +32,7 @@ class CategoryController extends Controller
             $path = 'uploads/category/';
             $file->move($path, $filename);
            }
+   
          Category::create([
            'name' => $request->name,
            'description' => $request->description,
@@ -43,7 +44,6 @@ class CategoryController extends Controller
          return redirect('/categories/create')->with('status','Category Added successfully');
     }
 
-    
     public function edit(int $id){
         // $category = Category::findOrFail($id);
         $category = Category::findOrFail($id);
