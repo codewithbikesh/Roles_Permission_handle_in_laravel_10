@@ -27,6 +27,7 @@
                                 <th>Price</th>
                                 <th>Stock</th>
                                 <th>Is Active</th>
+                                <th>Images</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -40,6 +41,7 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->stock }}</td>
                             <td style="background-color: {{ $product->is_active == 1 ? 'lightgreen' : 'lightcoral'}}; color:{{ $product->is_active == 1 ? 'green' : 'red' }}; ">{{ $product->is_active == 1 ? 'active' : 'inactive' }}</td>
+                            <td><a href="{{ url('products/'.$product->id.'/upload') }}" class="btn btn-info">Add / View Images</a></td>
                             <td>
                                 <a href="{{ url('products/'.$product->id.'/edit') }}" class="btn btn-primary">Edit</a>
                                 <a href="{{url('products/'.$product->id.'/delete')}}" class="btn btn-danger" onclick="confirm('Are you sure you want to delete this item ?');">Delete</a>

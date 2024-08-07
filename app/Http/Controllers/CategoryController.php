@@ -61,6 +61,8 @@ class CategoryController extends Controller
         ]);
 
         $category = Category::findOrfail($id);
+        $path = '';
+        $filename = '';
         if($request->hasFile('image')){
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
@@ -71,6 +73,8 @@ class CategoryController extends Controller
             if(File::exists($category->image)){
                File::delete($category->image);
             }
+           } else{
+             $path = $category->image;
            }
 
            $category->update([
