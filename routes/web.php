@@ -46,7 +46,7 @@ Route::get('products/{id}/delete',[ProductController::class,'destroy']);
 // Upload multiple images in products section route from here
 // Upload multiple images in products section route from here
 Route::get('products/{productId}/upload',[ProductImageController::class,'index'])->name('product-image.index');
-Route::post('products/{productId}/upload',[ProductImageController::class,'store'])->name('product-image.store');
+Route::post('products/{productId}/store',[ProductImageController::class,'store'])->name('product-image.store');
 Route::get('product-image/{productImageId}/delete',[ProductImageController::class,'destroy'])->name('product-image.delete');
 
 

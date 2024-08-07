@@ -31,7 +31,7 @@
                           @endforeach
                         </ul>
                         @endif
-                        <form action="{{ url('products/'.$product->id.'/upload') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ url('products/'.$product->id.'/store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                            <div class="mb-3">
                             <label for="">Upload Images (Max:20 images only)</label>
@@ -47,11 +47,24 @@
                 </div>
             </div>
             <div class="col-md-12 mt-4">
-                @foreach ($productImage  as $prodImg)
-                    <img src="{{ asset($prodImg->image) }}" style="width:100px; height:100px;" class="border p-2 m-3" alt="">
-                    <a href="{{ url('product-image/'.$prodImg->id.'/delete') }}" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
+                @foreach ($productImage as $prodImg)
+                    <div style="display: inline-block; margin: 10px; text-align: center;">
+                        <img src="{{ asset($prodImg->image) }}" 
+                             style="width: 100px; height: 100px; border: 1px solid #ddd; border-radius: 5px;" 
+                             alt="{{ $prodImg->name }}" 
+                             class="border p-2">
+                        <div style="margin-top: 5px;">
+                            <a href="{{ url('product-image/'.$prodImg->id.'/delete') }}" 
+                               onclick="return confirm('Are you sure you want to delete this item?')" 
+                               style="display: inline-block; padding: 5px 10px; font-size: 12px; color: #fff; background-color: #d9534f; border: none; border-radius: 3px; text-decoration: none; font-weight: bold;">
+                               Delete
+                            </a>
+                        </div>
+                    </div>
                 @endforeach
             </div>
+            
+            
         </div>
     </div>
     </x-app-web-layout>
